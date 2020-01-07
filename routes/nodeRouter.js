@@ -6,8 +6,13 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const data = await db('node');
-    console.log(data);
-    res.status(200).json(data);
+    const reducer = (acc, val) => {
+      acc[val.room_id] = val;
+      return acc;
+    };
+    const initialObject = {};
+    const obj = data.reduce(reducer, initialObject);
+    res.status(200).json(obj);
   } catch ({ message }) {
     console.error(message);
     res.status(500).json({ message });
