@@ -1,6 +1,5 @@
 exports.up = function(knex) {
   return knex.schema.createTable('node', tbl => {
-    tbl.increments('id');
     tbl
       .integer('room_id')
       .notNullable()

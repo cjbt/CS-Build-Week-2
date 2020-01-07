@@ -56,11 +56,11 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
+router.delete('/:room_id', async (req, res) => {
+  const { room_id } = req.params;
   try {
     await db('node')
-      .where({ id })
+      .where({ room_id })
       .del();
     res.status(200).json({ message: `node has been deleted` });
   } catch ({ message }) {
